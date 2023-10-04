@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,5 +15,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('accueil');
 });
+
+
+Route::get('/inscription-startups', function () {
+    return view('inscription-startups');
+});
+Route::post('/startups', [FormController::class, 'store']);
+
+
+
+Route::get('/inscription-investisseurs', function () {
+    $success = null;
+    return view('inscription-investisseurs', compact('success') );
+});
+Route::post('/investisseurs', [FormController::class, 'store']);
+
+Route::post('invest', 'FormController@store');
+
+
+
